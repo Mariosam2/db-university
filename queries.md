@@ -10,7 +10,7 @@ SELECT * FROM `courses` WHERE `cfu` > 10;
 
 ## Seleziono tutti gli studenti che hanno più di 30 anni
 ```sql
-SELECT * FROM `students` WHERE year(NOW()) - year(`date_of_birth`) > 30;
+SELECT * FROM `students` WHERE TIMESTAMPDIFF(year, `date_of_birth`, NOW()) > 30;
 ```
 
 ## Seleziono tutti i corsi del primo semestre del primo anno (286)
