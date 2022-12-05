@@ -26,8 +26,7 @@ SELECT * FROM `exams` WHERE `date` LIKE '2020-06-20' AND HOUR(`hour`) >= 14;
 ## Seleziono tutti i corsi di laurea magistrale(38)
 
 ```sql
-SELECT * FROM `degrees` WHERE `level`
- LIKE 'magistrale';
+SELECT * FROM `degrees` WHERE `level` LIKE 'magistrale';
 ```
 
 ## Numero di dipartimenti(12)
