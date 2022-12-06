@@ -87,7 +87,7 @@ WHERE `departments`.`name` LIKE 'Dipartimento di Matematica';
 
 ## BONUS: Seleziono per ogni studente quanti tentativi d’esame ha sostenuto per superare ciascuno dei suoi esami
 ```sql
-SELECT `students`.`name`, `students`.`surname`, COUNT(exam_id) AS `num_of_attempts`, `courses`.`name`
+SELECT `students`.`name`, `students`.`surname`, `courses`.`name` AS course_name , COUNT(exam_id) AS num_of_attempts 
 FROM exam_student
 JOIN students
 ON `exam_student`.`student_id` = `students`.`id`
@@ -95,12 +95,17 @@ JOIN exams
 ON `exam_student`.`exam_id` = `exams`.`id`
 JOIN courses 
 ON `exams`.`course_id` = `courses`.`id`
-GROUP BY `courses`.`id`, `students`.`id`;
-/* Prova */
-SELECT `students`.`name`, `students`.`surname`, COUNT(exam_id) AS num_of_attempts, `courses`.`name`
+GROUP BY  `students`.`id`,`courses`.`id`
+HAVING MAX(`exam_student`.`vote`) >= 18;
+/* Prova (ordine dei JOIN)
+SELECT `students`.`name`, `students`.`surname`, `courses`.`name` AS course_name , COUNT(exam_id) AS num_of_attempts 
 FROM students
-JOIN exam_student ON `students`.`id` = `exam_student`.`student_id`
-JOIN exams ON `exam_student`.`exam_id` = `exams`.`id`
-JOIN courses ON `exams`.`course_id` = `courses`.`id`
-GROUP BY `students`.`id`, `courses`.`id`;
+JOIN `exam_student`
+ON  `students`.`id` = `exam_student`.`student_id`
+JOIN exams
+ON `exam_student`.`exam_id` = `exams`.`id`
+JOIN courses 
+ON `exams`.`course_id` = `courses`.`id`
+GROUP BY  `students`.`id`,`courses`.`id`
+HAVING MAX(`exam_student`.`vote`) >= 18;*/
 ```
