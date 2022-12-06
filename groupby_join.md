@@ -96,4 +96,11 @@ ON `exam_student`.`exam_id` = `exams`.`id`
 JOIN courses 
 ON `exams`.`course_id` = `courses`.`id`
 GROUP BY `courses`.`id`, `students`.`id`;
+/* Prova */
+SELECT `students`.`name`, `students`.`surname`, COUNT(exam_id) AS num_of_attempts, `courses`.`name`
+FROM students
+JOIN exam_student ON `students`.`id` = `exam_student`.`student_id`
+JOIN exams ON `exam_student`.`exam_id` = `exams`.`id`
+JOIN courses ON `exams`.`course_id` = `courses`.`id`
+GROUP BY `students`.`id`, `courses`.`id`;
 ```
