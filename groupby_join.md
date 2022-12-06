@@ -72,7 +72,7 @@ ON `course_teacher`.`teacher_id` = `teachers`.`id`;
 
 ## Seleziono tutti i docenti che insegnano nel Dipartimento di Matematica (54)
 ```sql
-SELECT teachers.*, `departments`.`name`
+SELECT DISTINCT teachers.*, `departments`.`name` AS department_name
 FROM teachers
 JOIN course_teacher
 ON `teachers`.`id` = `course_teacher`.`teacher_id`
